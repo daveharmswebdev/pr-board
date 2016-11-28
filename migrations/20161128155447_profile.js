@@ -6,6 +6,12 @@ exports.up = (knex, Promise) => {
 		knex.schema.createTable('profile', table => {
 			table.increments('profile_id')
 			table.string('user_name')
+			table.string('last_name')
+			table.string('first_name')
+			table.string('middle_initial')
+			table.integer('height')
+			table.integer('weight')
+			table.string('password')
 		})
 	])
   
