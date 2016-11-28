@@ -20,7 +20,6 @@ app.use(session({
 }))
 
 app.use((req, res, next) => {
-	console.log('req.session', req.session)
 	app.locals.user = req.session && req.session.user_name
 	next()
 })
