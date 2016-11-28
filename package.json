@@ -1,0 +1,28 @@
+{
+  "name": "pr-board",
+  "version": "1.0.0",
+  "description": "Application where CrossFit Athletes, powerlifters, and similar athletes can enter their lifting personal records (PR).",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daveharmswebdev/pr-board.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daveharmswebdev/pr-board/issues"
+  },
+  "homepage": "https://github.com/daveharmswebdev/pr-board#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "supertest": "^2.0.1"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
