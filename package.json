@@ -4,7 +4,7 @@
   "description": "Application where CrossFit Athletes, powerlifters, and similar athletes can enter their lifting personal records (PR).",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "NODE_ENV=testing mocha"
   },
   "repository": {
     "type": "git",
