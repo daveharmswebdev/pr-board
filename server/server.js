@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
+const bodyParser = require('body-parser')
 
 const routes = require('../routes/')
 
@@ -19,11 +20,12 @@ app.use(session({
   secret: 'davesecretkey',
 }))
 
+app.use(bodyParser.json())
+
 app.use((req, res, next) => {
 	app.locals.user = req.session && req.session.user_name
 	next()
 })
-
 
 app.use(routes)
 
