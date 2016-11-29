@@ -35,14 +35,53 @@ describe('profile route spec', () => {
 			.end((err, res) => {
 				expect(res.body).to.have.property('profile_id')
 				expect(res.body.profile_id).to.equal(1)
+				expect(res.body).to.have.property('user_name')
+				expect(res.body.user_name).to.equal('huey')
+				expect(res.body).to.have.property('last_name')
+				expect(res.body.last_name).to.equal('Duck')
+				expect(res.body).to.have.property('first_name')
+				expect(res.body.first_name).to.equal('Huey')
+				expect(res.body).to.have.property('middle_initial')
+				expect(res.body.middle_initial).to.equal('A')
+				expect(res.body).to.have.property('height')
+				expect(res.body.height).to.equal(70)
+				expect(res.body).to.have.property('weight')
+				expect(res.body.weight).to.equal(155)
+				expect(res.body).to.have.property('password')
+				expect(res.body.password).to.equal('password')
 				done()
 			})
 	})
 	it('should respond with JSON to `post /profile`', done => {
 		request(app)
 			.post('/api/profile')
-			.send({"user":"test"})
-			.expect("the post was successful")
-			.expect(200, done)
+			.send({
+				"user_name":"donald",
+				"last_name":"Duck",
+				"first_name":"Donald",
+				"middle_initial":"D",
+				"height":"72",
+				"weight":"200",
+				"password":"awesome"
+			})
+			.end((err,res) => {
+				expect(res.body).to.have.property('profile_id')
+				expect(res.body.profile_id).to.equal(4)
+				expect(res.body).to.have.property('user_name')
+				expect(res.body.user_name).to.equal('donald')
+				expect(res.body).to.have.property('last_name')
+				expect(res.body.last_name).to.equal('Duck')
+				expect(res.body).to.have.property('first_name')
+				expect(res.body.first_name).to.equal('Donald')
+				expect(res.body).to.have.property('middle_initial')
+				expect(res.body.middle_initial).to.equal('D')
+				expect(res.body).to.have.property('height')
+				expect(res.body.height).to.equal(72)
+				expect(res.body).to.have.property('weight')
+				expect(res.body.weight).to.equal(200)
+				expect(res.body).to.have.property('password')
+				expect(res.body.password).to.equal('awesome')
+				done()				
+			})
 	})
 })

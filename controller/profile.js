@@ -8,17 +8,26 @@ module.exports.new = (req, res) => {
 }
 
 module.exports.show = (req, res, next) => {
-	console.log('profileId', req.params.profileId)
 	knex('profile')
 		.select()
 		.where('profile_id', req.params.profileId)
 		.then(profile => {
-			console.log('profile', profile[0])
 			res.json(profile[0])
 		})
 		.catch(error => next(error))
 }
 
-module.exports.create = (req, res) => {
-	res.send('the post was successful')
+module.exports.create = (req, res, next) => {
+	knex('profile')
+		.insert(req.body)
+		.returning('profile_id')
+		.then(id => {
+			knex('profile')
+				.select()
+				.where('profile_id', id[0])
+				.then(profile => {
+					res.json(profile[0])
+				})
+		})
+		.catch(error => next(error))
 }
