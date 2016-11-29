@@ -1,33 +1,29 @@
 'use strict'
 
-const {knexConfig} = require('../config')
-const knex = require('knex')(knexConfig)
+const Profile = require('../model/profile')
 
 module.exports.new = (req, res) => {
 	res.json({"message":"new profile"})
 }
 
 module.exports.show = (req, res, next) => {
-	knex('profile')
-		.select()
-		.where('profile_id', req.params.profileId)
+
+	new Profile({'profile_id': req.params.profileId})
+		.fetch()
 		.then(profile => {
-			res.json(profile[0])
+			res.json(profile)
 		})
 		.catch(error => next(error))
 }
 
 module.exports.create = (req, res, next) => {
-	knex('profile')
-		.insert(req.body)
-		.returning('profile_id')
-		.then(id => {
-			knex('profile')
-				.select()
-				.where('profile_id', id[0])
-				.then(profile => {
-					res.json(profile[0])
-				})
+
+	Profile.forge(req.body)
+		.save()
+		.then(model => {
+			model.attributes.height = parseInt(model.attributes.height)
+			model.attributes.weight = parseInt(model.attributes.weight)
+			res.json(model)
 		})
 		.catch(error => next(error))
 }
