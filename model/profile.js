@@ -9,15 +9,14 @@ let Profile = bookshelf.Model.extend({
 	formatProfile: model => {
 		const heightString = model => {
 			const height = parseInt(model.attributes.height)
-			console.log('height', height)
 			const feet = Math.floor(height/12)
 			const inches = height-(feet*12)
 			return `${feet}' ${inches}"`
 		}
 		const middleInitial = model => 
-			model.attributes.middle_initial.length > 0 ? `${model.attributes.middle_initial}.` : ''
+			model.attributes.middle_initial !== null ? `${model.attributes.middle_initial}. ` : ''
 		const fullName = model => 
-			`${model.attributes.first_name} ${middleInitial(model)} ${model.attributes.last_name}`
+			`${model.attributes.first_name} ${middleInitial(model)}${model.attributes.last_name}`
 		const profile = {
 			profile_id: model.attributes.profile_id,
 			user_name: model.attributes.user_name,
