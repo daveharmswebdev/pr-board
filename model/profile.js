@@ -9,8 +9,9 @@ let Profile = bookshelf.Model.extend({
 	formatProfile: model => {
 		const heightString = model => {
 			const height = parseInt(model.attributes.height)
+			console.log('height', height)
 			const feet = Math.floor(height/12)
-			const inches = height%feet
+			const inches = height-(feet*12)
 			return `${feet}' ${inches}"`
 		}
 		const middleInitial = model => 
@@ -23,7 +24,7 @@ let Profile = bookshelf.Model.extend({
 			full_name: fullName(model),
 			height_string: heightString(model),
 			weight: parseInt(model.attributes.weight),
-			password: 'awesome'
+			password: model.attributes.password
 		}
 		return profile		
 	}
