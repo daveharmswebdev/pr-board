@@ -11,7 +11,7 @@ module.exports.show = (req, res, next) => {
 	new Profile({'profile_id': req.params.profileId})
 		.fetch()
 		.then(profile => {
-			res.json(profile)
+			res.json(Profile.formatProfile(profile))
 		})
 		.catch(error => next(error))
 }
@@ -20,10 +20,8 @@ module.exports.create = (req, res, next) => {
 
 	Profile.forge(req.body)
 		.save()
-		.then(model => {
-			model.attributes.height = parseInt(model.attributes.height)
-			model.attributes.weight = parseInt(model.attributes.weight)
-			res.json(model)
+		.then(profile => {
+			res.json(Profile.formatProfile(profile))
 		})
 		.catch(error => next(error))
 }
