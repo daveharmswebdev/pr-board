@@ -1,0 +1,15 @@
+<h3>Login</h3>
+<form class="col s12">
+  <div [formGroup]="login_form" novalidate (ngSubmit)="save(login_form.value, login_form.valid)">
+    <div>
+      <label>Email</label>
+      <input type="email" class="form-control" formControlName="email" placeholder="Email">
+      <small [hidden]="login_form.controls.email.valid || (login_form.controls.email.pristine && !submitted)">
+        Email is required (Minimum five characters)
+      </small>
+    </div> 
+    <label>Password</label>
+    <input type="password" class="form-control" formControlName="password" placeholder="password">
+    <a role="button" (click)="login()" class="waves-effect waves-light btn">Login</a>
+  </div>
+</form>
