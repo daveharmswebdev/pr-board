@@ -19,6 +19,9 @@ const appRoutes: Routes = [
   },
   {
     path: '', component: HomeComponent
+  },
+  {
+    path: 'profile', component: ProfileComponent
   }
 ]
 
