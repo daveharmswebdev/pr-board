@@ -8,7 +8,8 @@
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "mocha": "mocha"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +31,7 @@
     "supertest": "^2.0.1",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.6.23",
-    "bcrypt": "^0.8.7",
+    "bcrypt": "^0.8.7"
   },
   "devDependencies": {
     "@types/jasmine": "^2.2.30",
