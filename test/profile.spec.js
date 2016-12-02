@@ -58,8 +58,8 @@ describe('profile route spec', () => {
 				"middle_initial":"D",
 				"height":"72",
 				"weight":"200",
-				"password":"awesome",
-				"compare":"awesome"
+				"password":"123",
+				"compare":"123"
 			})
 			.end((err,res) => {
 				expect(res.body).to.have.property('profile_id')
@@ -73,7 +73,6 @@ describe('profile route spec', () => {
 				expect(res.body).to.have.property('weight')
 				expect(res.body.weight).to.equal(200)
 				expect(res.body).to.have.property('password')
-				expect(res.body.password).to.equal('awesome')
 				done()				
 			})
 	})

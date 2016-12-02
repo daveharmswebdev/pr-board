@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
       middle_initial: 'C',
       height: 68,
       weight: 150,
-      password: 'password'
+      password: '$2a$15$kDMomtOgyEszidfkZZMyd.9mU1XnbKn.w.IHkPJR6gd8bJo5PxuFa'
     })
   ]);
 };
