@@ -1,7 +1,7 @@
 'use strict'
 
 const {expect} = require('chai')
-const validateHash = require('../lib/validateHash')
+const validate = require('../lib/validate')
 
 describe('validate and hash spec', () => {
 
@@ -17,7 +17,7 @@ describe('validate and hash spec', () => {
 			"compare":"password"
 		}
 
-		expect(validateHash(profile).error).to.include('password required')
+		expect(validate(profile).error).to.include('password required')
 	})
 
 	it('if no compare expect error message', () => {
@@ -32,7 +32,7 @@ describe('validate and hash spec', () => {
 			"compare":""
 		}
 
-		expect(validateHash(profile).error).to.include('compare password required')
+		expect(validate(profile).error).to.include('compare password required')
 	})
 
 	it('if compare and password do not match expect message', () => {
@@ -47,7 +47,7 @@ describe('validate and hash spec', () => {
 			"compare":"pass"
 		}
 
-		expect(validateHash(profile).error).to.include('password and comparison password do not match')	
+		expect(validate(profile).error).to.include('password and comparison password do not match')	
 	})
 
 	it('if no user_name expect error message', () => {
@@ -62,10 +62,10 @@ describe('validate and hash spec', () => {
 			"compare":"password"
 		}
 
-		expect(validateHash(profile).error).to.include('user name required')
+		expect(validate(profile).error).to.include('user name required')
 	})
 
-	it.skip('if no last_name expect error message', () => {
+	it('if no last_name expect error message', () => {
 		const profile = {
 			"user_name":"donald",
 			"last_name":"",
@@ -77,10 +77,10 @@ describe('validate and hash spec', () => {
 			"compare":"password"
 		}
 
-		expect(validateHash(profile).error).to.include('user name required')
+		expect(validate(profile).error).to.include('last name required')
 	})
 
-	it.skip('if no first_name expect error message', () => {
+	it('if no first_name expect error message', () => {
 		const profile = {
 			"user_name":"donald",
 			"last_name":"Duck",
@@ -92,12 +92,12 @@ describe('validate and hash spec', () => {
 			"compare":"password"
 		}
 
-		expect(validateHash(profile).error).to.include('user name required')
+		expect(validate(profile).error).to.include('first name required')
 	})
 
-	it.skip('if no height expect error message', () => {
+	it('if no height expect error message', () => {
 		const profile = {
-			"user_name":"",
+			"user_name":"donald",
 			"last_name":"Duck",
 			"first_name":"Donald",
 			"middle_initial":"D",
@@ -107,12 +107,12 @@ describe('validate and hash spec', () => {
 			"compare":"password"
 		}
 
-		expect(validateHash(profile).error).to.include('user name required')
+		expect(validate(profile).error).to.include('height value required')
 	})
 
-	it.skip('if no weight expect error message', () => {
+	it('if no weight expect error message', () => {
 		const profile = {
-			"user_name":"",
+			"user_name":"donald",
 			"last_name":"Duck",
 			"first_name":"Donald",
 			"middle_initial":"D",
@@ -122,7 +122,7 @@ describe('validate and hash spec', () => {
 			"compare":"password"
 		}
 
-		expect(validateHash(profile).error).to.include('user name required')
+		expect(validate(profile).error).to.include('weight value required')
 	})
 
 })
