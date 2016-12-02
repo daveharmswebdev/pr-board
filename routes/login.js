@@ -2,10 +2,10 @@
 
 const {Router} = require('express')
 const router = Router()
-// const login = require('../controller/login')
+const session = require('../controller/session')
 
-router.get('/api/login/', login.new)
+router.get('/api/login', session.new)
 
-router.post('/api/login', login.create)
+router.post('/api/login', session.create)
 
 module.exports = router

@@ -1,5 +1,9 @@
 'use strict'
 
-module.exports.new = {}
+module.exports.new = (req, res) => {
+	res.json({"message":"test"})
+}
 
-module.exports.create = {}
+module.exports.create = (req, res) => {
+	res.json({"message":"test"})
+}
