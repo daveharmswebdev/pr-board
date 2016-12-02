@@ -29,6 +29,17 @@ app.use((req, res, next) => {
 
 app.use(routes)
 
+app.use((req, res) =>
+  res.status(404).json({"message":"route not found"})
+)
+
+app.use((err, req, res, next) => {
+	if (process.env.NODE_ENV !== 'testing') {
+	  console.error(err)
+	}
+  res.status(500).json({"status":500, "message":"internal error", "type":"internal"})
+})
+
 app.listen(PORT, () => {
 	console.log('now listening on port', PORT)
 })

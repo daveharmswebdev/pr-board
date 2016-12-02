@@ -125,4 +125,55 @@ describe('validate and hash spec', () => {
 		expect(validate(profile).error).to.include('weight value required')
 	})
 
+	it('expect no error message if submission is complete', () => {
+		const profile = {
+			"user_name":"donald",
+			"last_name":"Duck",
+			"first_name":"Donald",
+			"middle_initial":"D",
+			"height":"72",
+			"weight":"150",
+			"password":"password",
+			"compare":"password"
+		}
+
+		expect(validate(profile).error).to.deep.equal([])
+	})
+
+	it('expect two error messages if no last_name and no first_name', () => {
+		const profile = {
+			"user_name":"donald",
+			"last_name":"",
+			"first_name":"",
+			"middle_initial":"D",
+			"height":"72",
+			"weight":"150",
+			"password":"password",
+			"compare":"password"
+		}
+
+		expect(validate(profile).error).to.deep.equal(['last name required','first name required'])
+	})
+
+	it('expect four error messages if no last_name, first_name, height and weight', () => {
+		const profile = {
+			"user_name":"donald",
+			"last_name":"",
+			"first_name":"",
+			"middle_initial":"D",
+			"height":"",
+			"weight":"",
+			"password":"password",
+			"compare":"password"
+		}
+
+		expect(validate(profile).error).to.deep.equal([
+			'last name required',
+			'first name required',
+			'height value required',
+			'weight value required'
+		])
+
+	})
+
 })
