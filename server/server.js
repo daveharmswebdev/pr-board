@@ -11,6 +11,9 @@ const routes = require('../routes/')
 
 const PORT = process.env.PORT || 3000
 
+//serve static files
+app.use(express.static('client'))
+
 // middlewares
 app.use(session({
   store: new RedisStore({
