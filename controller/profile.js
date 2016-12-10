@@ -1,7 +1,7 @@
 'use strict'
 
 const Profile = require('../model/profile')
-const validate = require('../lib/validate')
+const validate = require('../lib/validatePassword')
 const {omit} = require('ramda')
 const {hash} = require('bcrypt')
 

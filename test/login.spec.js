@@ -13,7 +13,7 @@ describe('login route spec', () => {
 			.expect('Content-Type', /json/)
 			.expect(200, done)
 	})
-	it('should respond with JSON to `post /api/login`', done => {
+	it.skip('should respond with JSON to `post /api/login`', done => {
 		request(app)
 			.post('/api/login')
 			.expect('Content-Type', /json/)
