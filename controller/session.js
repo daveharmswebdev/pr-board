@@ -7,7 +7,9 @@ module.exports.new = (req, res) => {
 }
 
 module.exports.create = (req, res, next) => {
+	console.log('req.body', req.body)
 	passport.authenticate('local', (err, user, info) => {
+		console.log('err - user - info',err, user, info)
 		if (err) {return next(err)}
 		if (!user) {return next('failed authentication')}
 		req.logIn(user, err => {

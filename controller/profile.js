@@ -1,8 +1,8 @@
 'use strict'
 
 const Profile = require('../model/profile')
-const validate = require('../lib/validatePassword')
-const {omit} = require('ramda')
+const validateProfile = require('../lib/validateProfile')
+const R = require('ramda')
 const {hash} = require('bcrypt')
 
 module.exports.new = (req, res) => {
@@ -20,22 +20,21 @@ module.exports.show = (req, res, next) => {
 }
 
 module.exports.create = (req, res, next) => {
-	const errMessages = validate(req.body).error
+	let newProfile = req.body
+	const errMessages = validateProfile(newProfile)
 	if (errMessages.length === 0) {
-		const newProfile = omit(['error','compare'], req.body)
+		newProfile = R.omit('compare', newProfile)
 		new Promise((resolve, reject) => {
 			hash(newProfile.password, 15, (err, hash) => {
 				if (err) {
 					reject(err)
 				} else {
-					console.log('req.body', hash)
 					resolve(hash)
 				}
 			})
 		})
 		.then(hash => {
 			newProfile.password = hash
-			console.log('newProfile', newProfile)
 			Profile.forge(newProfile)
 				.save()
 				.then(profile => {
