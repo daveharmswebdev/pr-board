@@ -48,7 +48,7 @@ describe('profile route spec', () => {
 				done()
 			})
 	})
-	it.skip('should respond with JSON to `post /profile`', done => {
+	it('should respond with JSON to `post /profile`', done => {
 		request(app)
 			.post('/api/profile')
 			.send({
@@ -56,8 +56,8 @@ describe('profile route spec', () => {
 				"last_name":"Duck",
 				"first_name":"Donald",
 				"middle_initial":"D",
-				"height":"72",
-				"weight":"200",
+				"height":72,
+				"weight":200,
 				"password":"123",
 				"compare":"123"
 			})
