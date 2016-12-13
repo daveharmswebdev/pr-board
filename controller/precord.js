@@ -35,17 +35,14 @@ module.exports.create = (req, res, next) => {
 		.insert(req.body)
 		.returning('pr_id')
 		.then(id => {
-			console.log('id', id)
 			knex('personal_records')
 				.join('lifts', 'personal_records.lift_id','=', 'lifts.lift_id')
 				.where('personal_records.pr_id', '=', Number(id))
 				.select()
 				.then(record => {
-					console.log('record', record)
 					res.json(record[0])
 				})
 				.catch(error => {
-					console.log('big fat error', error)
 					next(error)
 				})
 		})
