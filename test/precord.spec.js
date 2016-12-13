@@ -70,6 +70,8 @@ describe('personal records `/api/precord` spec', () => {
 			})
 			.end((err, res) => {
 				expect(res.status).to.equal(200)
+				expect(res.body).to.have.property('message')
+				expect(res.body.message).to.include('new back squat pr of 315 pounds, posted')
 				done()
 			})
 	})

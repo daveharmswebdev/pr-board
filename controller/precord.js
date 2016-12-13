@@ -2,6 +2,7 @@
 
 const { knexConfig } = require('../config')
 const knex = require('knex')(knexConfig)
+const newPrMessage = require('../lib/newPrMessage')
 
 module.exports.index = (req, res, next) => {
 	knex('personal_records')
@@ -40,7 +41,7 @@ module.exports.create = (req, res, next) => {
 				.where('personal_records.pr_id', '=', Number(id))
 				.select()
 				.then(record => {
-					res.json(record[0])
+					res.json(newPrMessage(record[0]))
 				})
 				.catch(error => {
 					next(error)
