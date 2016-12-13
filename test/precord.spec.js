@@ -59,4 +59,18 @@ describe('personal records `/api/precord` spec', () => {
 				done()
 			})
 	})
+
+	it('it should be able to post a new pr', done => {
+		request(app)
+			.post('/api/precord')
+			.send({
+				"profile_id": 1,
+				"lift_id": 0,
+				"weight": 315
+			})
+			.end((err, res) => {
+				expect(res.status).to.equal(200)
+				done()
+			})
+	})
 })
