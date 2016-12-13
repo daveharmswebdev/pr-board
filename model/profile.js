@@ -1,7 +1,6 @@
 'use strict'
 
 let bookshelf = require('../bookshelf')
-// const {hash} = require('bcrypt')
 
 let Profile = bookshelf.Model.extend({
 	tableName: 'profile',
