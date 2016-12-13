@@ -6,7 +6,7 @@ const precord = require('../controller/precord')
 
 router.get('/api/precord', precord.index)
 
-// router.get('/api/precord/:profile_id', precord.indexByProfileId)
+router.get('/api/precord/:profile_id', precord.indexByProfileId)
 
 // router.post('/api/precord', precord.create)
 
